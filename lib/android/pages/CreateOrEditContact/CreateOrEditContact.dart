@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:contacts/android/models/ContactModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -7,6 +6,7 @@ import 'package:google_map_location_picker/google_map_location_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../Home/Home.dart';
 import './components/Input.dart';
@@ -53,7 +53,7 @@ class _CreateOrEditContactState extends State<CreateOrEditContact> {
   }
 
   void pickLocation() async {
-    const apiKey = "AIzaSyC8pkAGUaPBMY1rrTKIfOtnCHGq1qsIGIw";
+    var apiKey = DotEnv().env['API_KEY_GOOGLE_MAPS'];
 
     Position position =
         await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
